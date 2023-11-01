@@ -1,0 +1,51 @@
+#!/bin/bash
+
+# Langkah 1: Membuat Docker image
+docker build -t item-app:v1 .
+
+# Langkah 2: Melihat daftar image di lokal
+docker images
+
+# Langkah 3: Mengubah nama image
+docker tag item-app:v1 nama-pengguna/item-app:v1
+
+# Langkah 4: Login ke Docker Hub
+docker login
+
+# Langkah 5: Mengunggah image ke Docker Hub
+docker push nama-pengguna/item-app:v1
+Langkah-langkah yang dilakukan dalam skrip ini adalah sebagai berikut:
+
+Membuat image Docker dari Dockerfile dengan menggunakan perintah docker build. Image akan diberi nama "item-app" dengan tag "v1" dan Dockerfile diambil dari direktori saat ini (.).
+
+Melihat daftar image yang ada di lokal dengan perintah docker images.
+
+Mengubah nama image dengan perintah docker tag. Ini akan memberikan nama image yang sesuai dengan format "nama-pengguna/item-app:v1". Pastikan untuk menggantikan "nama-pengguna" dengan nama pengguna Anda di Docker Hub.
+
+Login ke Docker Hub dengan perintah docker login. Anda akan diminta untuk memasukkan nama pengguna, kata sandi, dan (opsional) token otentikasi Docker Hub.
+
+Mengunggah image yang telah dibuat ke Docker Hub dengan perintah docker push. Ini akan membuat image tersedia di Docker Hub dengan nama yang sesuai.
+
+Pastikan Anda menjalankan skrip ini di terminal yang sesuai dan memiliki akses ke Docker Hub. Pastikan juga untuk menggantikan "nama-pengguna" dengan nama pengguna Docker Hub Anda dan sesuaikan nama image dan tag sesuai kebutuhan Anda.
+
+
+
+
+User
+docker login dengan input password
+ChatGPT
+Untuk melakukan login ke Docker Hub dan memasukkan kata sandi secara interaktif, Anda dapat menggunakan perintah docker login dengan opsi -p atau --password-stdin. Ini memungkinkan Anda untuk memasukkan kata sandi secara langsung melalui terminal. Berikut contoh penggunaan:
+
+bash
+Copy code
+echo "password" | docker login --username nama-pengguna --password-stdin
+Gantilah "nama-pengguna" dengan nama pengguna Anda di Docker Hub dan "password" dengan kata sandi Anda. Anda dapat menjalankan perintah ini dalam skrip shell atau terminal.
+
+Namun, perlu diingat bahwa menyimpan kata sandi secara terbuka dalam skrip shell mungkin tidak aman, terutama jika Anda berbagi atau menyimpan skrip tersebut di lingkungan yang tidak aman. Sebaiknya pertimbangkan penggunaan token otentikasi Docker Hub jika memungkinkan untuk menjaga keamanan kata sandi Anda.
+
+Untuk menghasilkan token otentikasi Docker Hub, Anda dapat melakukannya melalui situs web Docker Hub di https://hub.docker.com/settings/security. Setelah itu, Anda dapat menggunakan token otentikasi sebagai alternatif untuk kata sandi saat menjalankan docker login.
+
+
+
+
+
