@@ -4,16 +4,15 @@ services:
   item-app:
     image: fuaddi/item-app:v1 # Ganti dengan nama pengguna dan versi image yang sesuai
     ports:
-      - "80:80" # Melakukan port mapping dari port 80 di host ke port 80 di kontainer
+      - "80:8080" # Melakukan port mapping dari port 80 di host ke port 8080 di kontainer
     depends_on:
-      - item-db # Pastikan item-app hanya berjalan setelah item-db diluncurkan
+      - item-db # Pastikan item-app hanya berjalan setelah item-db diluncurkan 
+    restart: always
 
   item-db:
     image: mongo:3
     volumes:
       - app-db:/data/db
-
-    restart: always # Container akan selalu restart ketika terhenti
-
+    restart: always # Container akan selalu restart ketika terhentiy
 volumes:
   app-db:
